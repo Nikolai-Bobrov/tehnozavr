@@ -13,8 +13,6 @@ import ProductItem from "@/components/ProductItem";
 export default {
   props: ['products', 'index'],
   components: {ProductItem},
-
-
 }
 </script>
 

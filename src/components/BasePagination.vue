@@ -12,11 +12,9 @@
         {{ pageNumbers }}
       </a>
     </li>
-
     <li class="pagination__item">
       <a class="pagination__link pagination__link--arrow" :class="{'pagination__link--disabled' :page === pages }" href="#" aria-label="Следующая страница" v-on:click.stop="page === pages" @click.prevent="paginateNext( page  + 1 )">
         <svg width="8" height="14" fill="currentColor">
-
           <use xlink:href="#icon-arrow-right"></use>
         </svg>
       </a>
@@ -50,7 +48,6 @@ export default {
         this.$emit('paginate', page);
       }
     }
-
   }
 }
 </script>
