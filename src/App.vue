@@ -42,7 +42,6 @@ export default {
       filterCategoryId:0,
       filterColor: '',
 
-
       page: 1,
       productsPerPage: 3
     }
