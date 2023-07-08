@@ -17,7 +17,6 @@
 
         <BasePagination v-model="page" :count="countProducts" :per-page="productsPerPage"/>
       </section>
-
     </div>
   </main>
 
