@@ -14,8 +14,8 @@
     <ul class="colors colors--black">
       <li class="colors__item" v-for="prodColor in product.colors" :key="prodColor.id">
         <label class="colors__label">
-          <input class="colors__radio sr-only" type="radio" :value="prodColor.color" v-model="color" >
-          <span class="colors__value" :style="{ backgroundColor: prodColor.color }">
+          <input class="colors__radio sr-only" type="radio" :value="prodColor.title" v-model="color" >
+          <span class="colors__value" :style="{ backgroundColor: prodColor.code }">
                   </span>
         </label>
       </li>

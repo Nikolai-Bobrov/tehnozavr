@@ -7,7 +7,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         basketProduct: [
-            { productId: 1, amount: 2 }
+            { productId: 1, amount: 1 }
         ]
     },
     mutations: {
