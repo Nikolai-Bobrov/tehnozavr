@@ -12,6 +12,7 @@ import ProductPage from "@/pages/ProductPage.vue";
 import BasketPage from "@/pages/BasketPage.vue";
 import HeaderTag from "@/components/HeaderTag.vue";
 import FooterTag from "@/components/FooterTag.vue";
+import { mapActions, mapMutations} from "vuex";
 
 const routes = {
   main: 'MainPage',
@@ -21,7 +22,18 @@ const routes = {
 }
 
 export default {
-  components:{HeaderTag,FooterTag}
+  components:{HeaderTag,FooterTag},
+  created() {
+    const userAccessKey = localStorage.getItem('userAccessKey');
+    if(userAccessKey){
+      this.updateUserAccessKey(userAccessKey);
+    }
+    this.loadBasket();
+  },
+  methods: {
+    ...mapActions(['loadBasket']),
+    ...mapMutations(['updateUserAccessKey'])
+  }
 
 }
 </script>

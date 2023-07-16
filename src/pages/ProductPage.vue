@@ -1,6 +1,6 @@
 <template>
 
-    <main class="content container" v-if="productsLoading">Загрузка товара...</main>
+    <main class="content container" v-if="productsLoading"><img src="/img/Hourglass.gif" alt="Идет загрузка"></main>
     <main class="content container" v-else-if ="productsLoadingFailed">Произошла ошибка при загрузке товара.<button @click.pri.prevent="loadProducts">Попробовать еще раз</button></main>
     <main class="content container" v-else>
       <div class="content__top">
@@ -104,10 +104,12 @@
                   </button>
                 </div>
 
-                <button class="button button--primery" type="submit">
+                <button class="button button--primery" type="submit" :disabled="productAddsending">
                   В корзину
                 </button>
               </div>
+              <div v-show="productAdded">Товар добавлен в корзину</div>
+              <div v-show="productAddsending">Добавление товара в корзину....</div>
             </form>
           </div>
         </div>
@@ -173,6 +175,7 @@ import gotoPage from "@/helpers/gotoPage";
 import numberFormat from "@/helpers/numberFormat";
 import axios from "axios";
 import {API_BASE_URL} from "@/config";
+import { mapActions } from "vuex";
 
 export default {
   data(){
@@ -182,6 +185,8 @@ export default {
 
       productsLoading:false,
       productsLoadingFailed: false,
+      productAdded:false,
+      productAddsending: false
     }
   },
   filters: {
@@ -196,12 +201,16 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['addProductToBasket']),
     gotoPage,
     addToCart(){
-      this.$store.commit(
-          'addProductToBasket',
-          {productId: this.product.id, amount: this.productAmount}
-      )
+      this.productAdded = false;
+      this.productAddsending = true;
+      this.addProductToBasket({productId: this.product.id, amount: this.productAmount})
+          .then(()=> {
+            this.productAdded = true;
+            this.productAddsending = false;
+          });
     },
     loadProducts() {
       this.productsLoading = true;

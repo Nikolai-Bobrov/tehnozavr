@@ -13,7 +13,8 @@
       <ProductFilter :price-from.sync="filterPriceFrom" :price-to.sync="filterPriceTo" :category-id.sync="filterCategoryId" :color-item.sync="filterColor"/>
 
       <section class="catalog">
-        <div v-if="productsLoading">Загрузка товаров...</div>
+        
+        <div v-if="productsLoading"><img src="/img/Hourglass.gif" alt="Идет загрузка"></div>
         <div v-if="productsLoadingFailed">Произошла ошибка при загрузке товаров.<button @click.pri.prevent="loadProducts">Попробовать еще раз</button></div>
 
         <ProductList :products="products"/>

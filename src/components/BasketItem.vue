@@ -52,7 +52,7 @@
 
 <script>
 import numberFormat from "@/helpers/numberFormat";
-import { mapMutations} from "vuex";
+import { mapMutations, mapActions} from "vuex";
 
 export default {
   props: ['item'],
@@ -65,13 +65,18 @@ export default {
         return this.item.amount
       },
       set(value){
-        this.$store.commit('updateCartProductAmount', {productId: this.item.productId, amount: value})
+        this.$store.dispatch('updateBasketProductAmount', {productId: this.item.productId, amount: value})
       }
     },
   },
   methods: {
-    ...mapMutations({deleteProduct: 'deleteCartProduct'})
+    ...mapMutations({deleteProduct: 'deleteCartProduct'}),
+    ...mapMutations({deleteCartProduct: 'deleteCartProduct'}),
 
+    deleteProduct(productId){
+      this.$store.dispatch('deleteProductBasket', {productId});
+      this.deleteCartProduct(productId);
+    }
   }
 }
 

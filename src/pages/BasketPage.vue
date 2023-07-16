@@ -50,7 +50,7 @@
 <script>
 import numberFormat from "@/helpers/numberFormat";
 import BasketItem from "@/components/BasketItem.vue";
-import { mapGetters} from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
   components:{
