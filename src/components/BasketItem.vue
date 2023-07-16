@@ -52,7 +52,7 @@
 
 <script>
 import numberFormat from "@/helpers/numberFormat";
-import { mapMutations, mapActions} from "vuex";
+import { mapMutations} from "vuex";
 
 export default {
   props: ['item'],
