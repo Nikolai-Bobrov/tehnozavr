@@ -52,7 +52,7 @@
 <script>
 import numberFormat from "@/helpers/numberFormat";
 import BasketItem from "@/components/BasketItem.vue";
-import { mapGetters, mapMutations } from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
 

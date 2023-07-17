@@ -3,16 +3,16 @@
   <main class="content container" v-else>
     <div class="content__top">
       <ul class="breadcrumbs">
-        <li class="breadcrumbs__item">
-          <a class="breadcrumbs__link" href="index.html">
+        <router-link :to="{name:'main'}" class="breadcrumbs__item">
+          <a class="breadcrumbs__link" href="#">
             Каталог
           </a>
-        </li>
-        <li class="breadcrumbs__item">
-          <a class="breadcrumbs__link" href="cart.html">
+        </router-link>
+        <router-link :to="{name: 'basket'}" class="breadcrumbs__item">
+          <a class="breadcrumbs__link" href="#">
             Корзина
           </a>
-        </li>
+        </router-link>
         <li class="breadcrumbs__item">
           <a class="breadcrumbs__link">
             Оформление заказа
