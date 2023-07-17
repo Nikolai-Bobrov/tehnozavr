@@ -24,7 +24,9 @@
 
     <section class="cart">
       <form class="cart__form form" action="#" method="POST">
-        <div class="cart__field">
+        <div class="cart__field" v-if="basketProductLoading"><img src="/img/Hourglass.gif" alt="Идет загрузка"></div>
+        <div class="cart__field" v-else-if="basketProductLoadingError">Произошла ошибка при загрущке товаров</div>
+        <div class="cart__field" v-else>
           <ul class="cart__list">
             <BasketItem v-for="item in products" :item="item" :key="item.product.id"/>
           </ul>
@@ -38,9 +40,9 @@
             Итого: <span>{{ totalPrice | numberFormat }} ₽</span>
           </p>
 
-          <button class="cart__button button button--primery" >
+          <router-link tag="button" :to="{name: 'order'}" class="cart__button button button--primery" >
             Оформить заказ
-          </button>
+          </router-link>
         </div>
       </form>
     </section>
@@ -50,9 +52,10 @@
 <script>
 import numberFormat from "@/helpers/numberFormat";
 import BasketItem from "@/components/BasketItem.vue";
-import { mapGetters } from "vuex";
+import { mapGetters, mapMutations } from "vuex";
 
 export default {
+
   components:{
     BasketItem
   },
@@ -60,7 +63,7 @@ export default {
       numberFormat
     },
     computed: {
-      ...mapGetters({products: 'basketDetailProducts', totalPrice: 'basketTotalPrice'}),
+      ...mapGetters({products: 'basketDetailProducts', totalPrice: 'basketTotalPrice', basketProductLoading: 'basketProductLoading', basketProductLoadingError: 'basketProductLoadingError'}),
 
     }
 }
